@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>Hello cậuuu</title>
+        <style>
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+                transition: all 0.3s ease; /* Smooth transition */
+                position: relative;
+            }
+            .btn--yes {
+                background-color: #4CAF50;
+                color: white;
+            }
+            .btn--no {
+                background-color: #f44336;
+                color: white;
+                position: absolute; /* Allows it to move around */
+            }
+            .ok-message {
+                display: none; /* Hidden initially */
+                margin-top: 20px;
+                font-size: 24px;
+                color: #4CAF50;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container">
+            <img class="cat-img" src="cat.jpeg" alt="Picture of a cat" />
+            <p class="title">Mình hẹn hò nhaa :>>></p>
+            <div class="button">
+                <button type="button" class="btn btn--yes" id="yesBtn">Yes</button>
+                <button type="button" class="btn btn--no" id="noBtn">No</button>
+            </div>
+            <p class="ok-message" id="okMessage">Tui biết bạn sẽ đồng ý mà =))</p> <!-- Hidden OK message -->
+        </main>
+
+        <script type="module">
+            // JavaScript to handle button clicks
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const okMessage = document.getElementById('okMessage');
+            
+            // Function to display "OK!" message
+            const showOkMessage = () => {
+                okMessage.style.display = 'block'; // Show the "OK!" message
+            };
+
+            // Function to move the "No" button to a random position
+            const moveNoButton = () => {
+                const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
+                const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
+                noBtn.style.left = x + 'px';
+                noBtn.style.top = y + 'px';
+            };
+
+            // Function to handle "Yes" button click
+            const handleYesClick = () => {
+                // Show the "OK!" message
+                showOkMessage();
+                // Remove the event listener to prevent further clicks
+                yesBtn.removeEventListener('click', handleYesClick);
+            };
+
+            // Add click event listener for the "Yes" button
+            yesBtn.addEventListener('click', handleYesClick);
+
+            // Add mouseover event listener for the "No" button that moves it
+            noBtn.addEventListener('mouseover', moveNoButton);
+        </script>
+    </body>
+</html>
